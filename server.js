@@ -3,14 +3,15 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts')
 require('dotenv').config()
 
-const indexRouter = require('./routers/routerIndex')
-const authorsIndex = require('./routers/authorsIndex')
+const indexRouter = require('./routers/router')
+const authorsIndex = require('./routers/authorsRouter')
+const booksIndex = require('./routers/booksRouter')
 
 app.set("view engine", "ejs")
 app.set("views", __dirname + "/views")
 app.set("layout", "layouts/layout")
 app.use(expressLayouts)
-app.use(express.static("public"))
+app.use(express.static("public")) 
 app.use(express.urlencoded({ extended: true }))
 
 const mongoose = require('mongoose')
@@ -20,6 +21,7 @@ mongoose.connect(process.env.DATABASE_URL)
 
 app.use('/', indexRouter)
 app.use('/authors', authorsIndex)
+app.use('/books' , booksIndex)
 
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server is running")

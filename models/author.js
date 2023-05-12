@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 
-const authorsSchema = new mongoose.Schema({
+const authorSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        set : (val)=> val.trim()
     }
 })
 
-module.exports = mongoose.model('Author', authorsSchema)
+module.exports = mongoose.model('Author', authorSchema)

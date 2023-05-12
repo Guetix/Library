@@ -3,9 +3,9 @@ const router = express.Router()
 const Author = require('../models/author')
 
 
-// All Authors
+
 router.route('/')
-    .get(async (req, res) => {
+    .get(async (req, res) => {  // Get Authors
         let searchOptions = {}
         if (req.query._search !== null && req.query._search !== '') {
             searchOptions.name = new RegExp(req.query._search, 'i')
@@ -14,14 +14,14 @@ router.route('/')
             const authorsList = await Author.find(searchOptions)
             res.render('./authors/index', {
                 authorsList,
-                searchOptions: req.query
+                searchOptions: req.query 
             })
         } catch (err) {
             res.redirect('/')
         }
 
     })
-    .post(async (req, res) => {
+    .post(async (req, res) => { // Add Author
         const author = new Author({
             name: req.body.name
         })
@@ -33,7 +33,7 @@ router.route('/')
             if (err.name === 'MongoServerError' && err.code === 11000) {
                 error = 'The Name Is Already Exists'
             }
-            res.status(500).render('./authors/new', {
+            res.status(500).render('./authors/newAuthor', {
                 author: author,
                 errorMessage: error
             })
@@ -41,7 +41,7 @@ router.route('/')
     })
 // To add a new Authors
 router.get('/new', (req, res) => {
-    res.render('./authors/new', { author: new Author() })
+    res.render('./authors/newAuthor', { author: new Author() })
 })
 
 module.exports = router
