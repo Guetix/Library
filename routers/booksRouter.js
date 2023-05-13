@@ -54,7 +54,7 @@ router.route('/')
     })
     try {
       await book.save()
-      res.redirect('/books')
+      res.redirect('/books/new')
     } catch (err) {
       if (book.coverImageName != null) {
         removeBookCover(fileName)

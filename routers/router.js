@@ -5,7 +5,7 @@ const book = require('../models/book')
 router.get('/', async (req, res) => {
     let books;
     try {
-        books = await book.find({}).sort({ createdAt: 'desc' }).limit(3)
+        books = await book.find({}).sort({ createdAt: 'desc' }).limit(5)
     } catch {
         books = []
     }

@@ -7,6 +7,7 @@ const bookSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
+        set : (val)=> val.trim()
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
@@ -15,6 +16,7 @@ const bookSchema = new mongoose.Schema({
     },
     description: {
         type: String,
+        set : (val)=> val.trim()
     },
     publishDate: {
         type: Date,
