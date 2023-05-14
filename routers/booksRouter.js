@@ -14,7 +14,8 @@ const upload = multer({
     callback(null, imagesMimeTypes.includes(file.mimetype))
   }
 })
-
+// add enctype="multipart/form-data" to the form
+// pass the meddleware upload.single('coverImage') to the route with the name of input 'coverImage'
 
 router.route('/')
   .get(async (req, res) => {   // Get Books
