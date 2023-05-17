@@ -7,7 +7,7 @@ const bookSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        set : (val)=> val.trim()
+        trim: true
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
@@ -16,7 +16,7 @@ const bookSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        set : (val)=> val.trim()
+        set: (val) => val.trim()
     },
     publishDate: {
         type: Date,
@@ -37,7 +37,7 @@ const bookSchema = new mongoose.Schema({
     }
 })
 bookSchema.virtual('coverImagePath').get(function () {
-   return path.join(coverImagesPath , this.coverImageName)
+    return path.join(coverImagesPath, this.coverImageName)
 })
 
 module.exports = mongoose.model('Book', bookSchema)

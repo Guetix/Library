@@ -9,13 +9,13 @@ const Author = require('../models/author')
 const uploadingPath = path.join('public', Book.coverImagesPath)
 const imagesMimeTypes = ['image/jpeg', 'images/png', 'images/gif']
 const upload = multer({
-  dest: uploadingPath,
+  dest: uploadingPath, //the destination when the buffer will stored ,it'll save the file locally (to the filesystem)
   fileFilter: (req, file, callback) => {
     callback(null, imagesMimeTypes.includes(file.mimetype))
   }
 })
-// add enctype="multipart/form-data" to the form
-// pass the meddleware upload.single('coverImage') to the route with the name of input 'coverImage'
+// const storage = multer.memoryStorage() || if you don't set the dest option ,you'll get the buffer from the file object  
+// const upload = multer({ storage: storage })
 
 router.route('/')
   .get(async (req, res) => {   // Get Books
@@ -45,6 +45,7 @@ router.route('/')
 
   .post(upload.single('coverImage'), async (req, res) => {  // Add Book
     let fileName = req.file != null ? req.file.filename : null
+    console.log(req.file)
     const book = new Book({
       title: req.body.title,
       author: req.body.author,
@@ -53,6 +54,7 @@ router.route('/')
       pageCount: req.body.pageCount,
       coverImageName: fileName
     })
+
     try {
       await book.save()
       res.redirect('/books/new')

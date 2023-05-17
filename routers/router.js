@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const book = require('../models/book')
+const path = require('node:path')
 
 router.get('/', async (req, res) => {
     let books;
