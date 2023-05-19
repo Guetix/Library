@@ -1,0 +1,9 @@
+<div>
+    <h1><%= author.name %></h1>
+    <a href="/authors/<%=  author.id %>/edit">Edit</a>
+    <%- include('../partials/_author_option' , {url: `/authors/${author.id}` }) %>
+    <% if(booksList.length > 0){ %> <% booksList.forEach(book => { %>
+    <img height="150" width="100" src="<%= book.coverImagePath %>" />
+    <% }) %> <% } %>
+  </div>
+  

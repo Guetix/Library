@@ -5,8 +5,10 @@ const authorSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        set : (val)=> val.trim()
+        trim :true
     }
 })
+
+
 
 module.exports = mongoose.model('Author', authorSchema)
