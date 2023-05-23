@@ -1,6 +1,6 @@
 .env
 node_modules
 
-public/uploads/coverImages/*
-!public/uploads/coverImages/.gitkeep
+public/*
+!public/.gitkeep
 
