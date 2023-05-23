@@ -43,7 +43,7 @@ router.route('/')
         }
     })
 
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', async (req, res) => { //send data to .put(/:id)
     try {
         const author = await Author.findById(req.params.id)
         res.render('./authors/editAuthor', { author })
@@ -52,13 +52,12 @@ router.get('/:id/edit', async (req, res) => {
     }
 })
 router.route('/:id')
-    .get(async (req, res) => {
+    .get(async (req, res) => { //show an author 
         try {
             const author = await Author.findById(req.params.id)
             const booksList = await Book.find({ author: author.id }).limit(5).exec()
             res.render('./authors/showAuthor', { author, booksList })
-        } catch (err){
-            console.log(err)
+        } catch {
             res.redirect('/authors')
         }
     })
@@ -73,7 +72,7 @@ router.route('/:id')
             if (author == null) {
                 res.redirect(`/authors`)
             }
-            res.render(`/authors/editAuthor`, {
+            res.render(`./authors/editAuthor`, {
                 author,
                 errorMessage: 'Error Updating Author'
             })
@@ -89,15 +88,15 @@ router.route('/:id')
     })
 
 async function preRemove(req, res, next) {
+    let booksList;
     try {
-        const books = await Book.find({ author: req.params.id })
-        if (books.length > 0) {
-            // req.message ='Author is used in books'
-            // return next()
-            res.redirect(`/authors/${req.params.id}`)
-            return
+        booksList = await Book.find({ author: req.params.id })
+        if (booksList.length <= 0) {
+            return next()
         }
-        next()
+        let author = {}
+        author.id = req.params.id
+        res.render(`./authors/showAuthor`, { author, booksList, errorMessage: 'The Author Has Books Still, Error Deleting Author !' })
     } catch (err) {
         res.redirect('/')
     }
