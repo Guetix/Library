@@ -118,7 +118,6 @@ async function preRemove(req, res, next) {
             return next()
         }
          next()
-
     } catch {
         res.redirect('/')
     }

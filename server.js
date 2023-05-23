@@ -14,6 +14,7 @@ app.set("layout", "layouts/layout")
 app.use(expressLayouts)
 app.use(methodOverride('_method'))
 app.use(express.static("public"))
+app.use('/resource' , express.static("resource") )
 app.use(express.urlencoded({ extended: true }))
 
 const mongoose = require('mongoose')

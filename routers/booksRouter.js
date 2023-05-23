@@ -45,7 +45,6 @@ router.route('/')
 
   .post(upload.single('coverImage'), async (req, res) => {  // Add Book
     let fileName = req.file != null ? req.file.filename : null
-    console.log(req.file)
     const book = new Book({
       title: req.body.title,
       author: req.body.author,
@@ -54,7 +53,6 @@ router.route('/')
       pageCount: req.body.pageCount,
       coverImageName: fileName
     })
-
     try {
       await book.save()
       res.redirect('/books/new')
