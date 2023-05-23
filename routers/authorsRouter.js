@@ -8,7 +8,8 @@ router.get('/new', (req, res) => {
     res.render('./authors/newAuthor', { author: new Author() })
 })
 router.route('/')
-    .get(async (req, res) => {  // Get Authors
+// Get all the Authors from Db
+    .get(async (req, res) => {  
         let searchOptions = {}
         if (req.query._search !== null && req.query._search !== '') {
             searchOptions.name = new RegExp(req.query._search, 'i')
@@ -24,7 +25,8 @@ router.route('/')
         }
 
     })
-    .post(async (req, res) => { // Add Author
+     // Create author
+    .post(async (req, res) => {
         const author = new Author({
             name: req.body.name
         })
@@ -38,8 +40,7 @@ router.route('/')
             })
         }
     })
-function checkError(err) {
-    console.log(err.message)
+function checkError(err) { 
     let error = 'Error Creating Author !'
     if (err.name === 'MongoServerError' && err.code === 11000) {
         return error = 'The Name Is Already Exists'
@@ -50,7 +51,8 @@ function checkError(err) {
     return error
 }
 
-router.get('/:id/edit', async (req, res) => { //send data to .put(/:id)
+ //form to set and send a new name  to .put(/:id)
+router.get('/:id/edit', async (req, res) => {
     try {
         const author = await Author.findById(req.params.id)
         res.render('./authors/editAuthor', { author })
@@ -58,8 +60,10 @@ router.get('/:id/edit', async (req, res) => { //send data to .put(/:id)
         res.redirect('/authors')
     }
 })
+
+//author Read, Update, Delete
 router.route('/:id')
-    .get(async (req, res) => { //show an author 
+    .get(async (req, res) => { 
         try {
             const author = await Author.findById(req.params.id)
             const booksList = await Book.find({ author: author.id }).limit(5).exec()
@@ -87,31 +91,35 @@ router.route('/:id')
     })
     .delete(preRemove, async (req, res) => {
         try {
+            if (req.res.locals.cantDel) {
+                const { booksList } = req.res.locals
+                const author = await Author.findById(req.params.id)
+                res.render(`./authors/showAuthor`, {
+                    author,
+                    booksList,
+                    errorMessage: 'Error Deleting Author! this Author Has Books Still, '
+                })
+                return
+            }
             await Author.deleteOne({ _id: req.params.id })
             res.redirect('/authors')
-        } catch {
+        } catch{
             res.redirect('/authors')
         }
     })
-
+// middleware Runs before deleting the author
 async function preRemove(req, res, next) {
     let booksList;
-    let author;
     try {
         booksList = await Book.find({ author: req.params.id })
-        if (booksList.length <= 0) {
+        if (booksList.length > 0) {
+            res.locals.cantDel = true
+            res.locals.booksList = booksList
             return next()
         }
-        author = Author.findById(req.params.id)
-        res.render(`./authors/showAuthor`, {
-            author,
-            booksList,
-            errorMessage: 'The Author Has Books Still, Error Deleting Author !'
-        })
+         next()
+
     } catch {
-        if (author == null) {
-            res.redirect('/authors')
-        }
         res.redirect('/')
     }
 }
