@@ -4,7 +4,7 @@ const authorSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        match: [ /^\w+\s?\w*$/, 'Please enter a valid name'],
+        match: [ /^[a-zA-Z]+\s?\w*$/, 'Please enter a valid name'],
         unique: true,
         trim: true
     }
