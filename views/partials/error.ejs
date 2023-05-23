@@ -1,1 +1,8 @@
-<% if( locals.errorMessage != null) { %> <%= errorMessage %> <% } %>
+<% if( locals.errorMessage != null) { %>
+<div class="err"><%= errorMessage %></div>
+<% } %>
+<style>
+    .err {
+    color: red;
+  }
+</style>

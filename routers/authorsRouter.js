@@ -32,16 +32,23 @@ router.route('/')
             await author.save()
             res.redirect('/authors/new')
         } catch (err) {
-            let error = 'Error Creating Author !'
-            if (err.name === 'MongoServerError' && err.code === 11000) {
-                error = 'The Name Is Already Exists'
-            }
             res.status(500).render('./authors/newAuthor', {
                 author: author,
-                errorMessage: error
+                errorMessage: checkError(err)
             })
         }
     })
+function checkError(err) {
+    console.log(err.message)
+    let error = 'Error Creating Author !'
+    if (err.name === 'MongoServerError' && err.code === 11000) {
+        return error = 'The Name Is Already Exists'
+    }
+    if (err._message === 'Author validation failed') {
+        return error = "Please enter a valid name"
+    }
+    return error
+}
 
 router.get('/:id/edit', async (req, res) => { //send data to .put(/:id)
     try {
@@ -96,8 +103,12 @@ async function preRemove(req, res, next) {
         }
         let author = {}
         author.id = req.params.id
-        res.render(`./authors/showAuthor`, { author, booksList, errorMessage: 'The Author Has Books Still, Error Deleting Author !' })
-    } catch (err) {
+        res.render(`./authors/showAuthor`, {
+            author,
+            booksList,
+            errorMessage: 'The Author Has Books Still, Error Deleting Author !'
+        })
+    } catch {
         res.redirect('/')
     }
 }
