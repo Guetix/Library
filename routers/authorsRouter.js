@@ -96,19 +96,22 @@ router.route('/:id')
 
 async function preRemove(req, res, next) {
     let booksList;
+    let author;
     try {
         booksList = await Book.find({ author: req.params.id })
         if (booksList.length <= 0) {
             return next()
         }
-        let author = {}
-        author.id = req.params.id
+        author = Author.findById(req.params.id)
         res.render(`./authors/showAuthor`, {
             author,
             booksList,
             errorMessage: 'The Author Has Books Still, Error Deleting Author !'
         })
     } catch {
+        if (author == null) {
+            res.redirect('/authors')
+        }
         res.redirect('/')
     }
 }
