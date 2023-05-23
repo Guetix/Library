@@ -1,5 +1,5 @@
 .env
 node_modules
 
-public/uploads/coverImags/*
+public/uploads/coverImages/*
 
