@@ -12,7 +12,7 @@
         <%= author.name %>
         <a href="/authors/<%= author.id %>">View</a>
 <a href="/authors/<%= author.id %>/edit">Edit</a>
-        <%- include('../partials/_author_option' , {url :`/authors/${author.id}` }) %>
+        <%- include('../partials/_delete_form' , {url :`/authors/${author.id}` }) %>
     </li>
 <% }) %>
 

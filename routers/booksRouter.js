@@ -7,7 +7,7 @@ const Book = require('../models/book')
 const Author = require('../models/author')
 
 const uploadingPath = path.join('public', Book.coverImagesPath)
-const imagesMimeTypes = ['image/jpeg', 'images/png', 'images/gif']
+const imagesMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
 const upload = multer({
   dest: uploadingPath, //the destination when the buffer will stored ,it'll save the file locally (to the filesystem)
   fileFilter: (req, file, callback) => {
@@ -17,8 +17,14 @@ const upload = multer({
 // const storage = multer.memoryStorage() || if you don't set the dest option ,you'll get the buffer from the file object  
 // const upload = multer({ storage: storage })
 
+
+// form to create a new book
+router.get('/new', (req, res) => {
+  renderNewPage(res, new Book(), 'newBook')
+})
 router.route('/')
-  .get(async (req, res) => {   // Get Books
+  // Read books from Db
+  .get(async (req, res) => {
     const { _title, _publishAfter, _publishBefore } = req.query
     let query = Book.find()
     if (_title != null && _title != '') {
@@ -32,7 +38,7 @@ router.route('/')
     }
 
     try {
-      const books = await query.populate('author', 'name').exec()
+      const books = await query.exec()
       res.render('./books/index.ejs', {
         books,
         searchOptions: req.query
@@ -42,8 +48,8 @@ router.route('/')
       res.status(500).redirect('/')
     }
   })
-
-  .post(upload.single('coverImage'), async (req, res) => {  // Add Book
+  //Create book
+  .post(upload.single('coverImage'), async (req, res) => {
     let fileName = req.file != null ? req.file.filename : null
     const book = new Book({
       title: req.body.title,
@@ -60,13 +66,69 @@ router.route('/')
       if (book.coverImageName != null) {
         removeBookCover(fileName)
       }
-      renderNewPage(res, book, true)
+      renderNewPage(res, book, 'newBook', true)
     }
   })
 
-router.get('/new', (req, res) => { // To add a new Book
-  renderNewPage(res, new Book())
+
+//form to Update the book, sending request to .put(/:id)
+router.get('/:id/edit', async (req, res) => {
+  let book;
+  try {
+    book = await Book.findById(req.params.id)
+    renderNewPage(res, book, 'editBook')
+  } catch {
+    if (book == null) {
+      res.redirect('/books')
+      return
+    }
+    res.redirect('/')
+  }
+
 })
+
+//book Read, Update, Delete
+router.route('/:id')
+  .get(async (req, res) => {
+    let book
+    try {
+      book = await Book.findById(req.params.id).populate('author').exec()
+      res.render('./books/showBook', { book })
+    } catch {
+      res.status(500).redirect('/books')
+    }
+  })
+  .put(upload.single('coverImage'), async (req, res) => {
+    let fileName = req.file ? req.file.filename : null
+    let book;
+    try {
+      book = await Book.findById(req.params.id)
+      book.title = req.body.title
+      book.author = req.body.author
+      book.description = req.body.description
+      book.publishDate = new Date(req.body.publishDate) //String to Date
+      book.pageCount = req.body.pageCount
+      if (fileName != null) {
+        book.coverImageName = fileName
+      }
+      book.save()
+      res.redirect(`/books/${book._id}`)
+    } catch {
+      if (fileName != null) {
+        removeBookCover(fileName)
+      }
+      renderNewPage(res, book, 'editBook', true)
+    }
+
+  })
+  .delete(async (req, res) => {
+    try {
+      await Book.deleteOne({ _id: req.params.id })
+      res.redirect('/books')
+    } catch {
+      res.status(500).redirect('/books')
+    }
+  })
 
 
 function removeBookCover(fileName) {
@@ -75,14 +137,18 @@ function removeBookCover(fileName) {
   })
 }
 
-async function renderNewPage(res, book, hasError = false) {
+async function renderNewPage(res, book, file, hasError = false) {
   try {
     const authors = await Author.find({})
     const options = { authors, book }
-    if (hasError) {
-      options.errorMessage = 'something goes wrong, try agin.'
+    if (hasError && file === 'newBook') {
+      options.errorMessage = 'Failed To Add A New Book! Check Your Entered Data, And Try Again.'
     }
-    res.render('./books/newBook', options)
+    if (hasError && file === 'editBook') {
+      options.errorMessage = 'Error Updating Book, try again.'
+    }
+
+    res.render(`./books/${file}`, options)
   } catch {
     res.status(500).redirect('/books')
   }
