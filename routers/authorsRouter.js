@@ -97,7 +97,7 @@ router.route('/:id')
                 res.render(`./authors/showAuthor`, {
                     author,
                     booksList,
-                    errorMessage: 'Error Deleting Author! this Author Has Books Still, '
+                    errorMessage: 'Error Deleting Author! This Author Has Books Still, '
                 })
                 return
             }

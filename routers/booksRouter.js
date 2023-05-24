@@ -93,7 +93,7 @@ router.route('/:id')
     let book
     try {
       book = await Book.findById(req.params.id).populate('author').exec()
-      res.render('./books/showBook', { book })
+      res.render('books/showBook', { book })
     } catch {
       res.status(500).redirect('/books')
     }
@@ -111,11 +111,14 @@ router.route('/:id')
       if (fileName != null) {
         book.coverImageName = fileName
       }
-      book.save()
+      await book.save()
       res.redirect(`/books/${book._id}`)
     } catch {
       if (fileName != null) {
         removeBookCover(fileName)
+      }
+      if (book == null) {
+        res.redirect('/books')
       }
       renderNewPage(res, book, 'editBook', true)
     }
@@ -123,7 +126,8 @@ router.route('/:id')
   })
   .delete(async (req, res) => {
     try {
-      await Book.deleteOne({ _id: req.params.id })
+      let book = await Book.findByIdAndDelete({ _id: req.params.id })
+      removeBookCover(book.coverImageName)
       res.redirect('/books')
     } catch {
       res.status(500).redirect('/books')
@@ -137,18 +141,18 @@ function removeBookCover(fileName) {
   })
 }
 
-async function renderNewPage(res, book, file, hasError = false) {
+async function renderNewPage(res, book, form, hasError = false) {
   try {
     const authors = await Author.find({})
     const options = { authors, book }
-    if (hasError && file === 'newBook') {
+    if (hasError && form === 'newBook') {
       options.errorMessage = 'Failed To Add A New Book! Check Your Entered Data, And Try Again.'
     }
-    if (hasError && file === 'editBook') {
+    if (hasError && form === 'editBook') {
       options.errorMessage = 'Error Updating Book, try again.'
     }
 
-    res.render(`./books/${file}`, options)
+    res.render(`books/${form}`, options)
   } catch {
     res.status(500).redirect('/books')
   }
