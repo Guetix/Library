@@ -109,6 +109,7 @@ router.route('/:id')
       book.publishDate = new Date(req.body.publishDate) //String to Date
       book.pageCount = req.body.pageCount
       if (fileName != null) {
+        removeBookCover(book.coverImageName)
         book.coverImageName = fileName
       }
       await book.save()

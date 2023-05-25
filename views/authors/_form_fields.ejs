@@ -1,4 +1,15 @@
 <!-- add Author -->
-
-<label for="name">Name:</label>
+<div>
+    <label for="name">name:</label>
 <input type="text" name="name" value="<%= author.name %>" />
+</div>
+<div>
+    <label for="image">image:</label>
+<input id="inputImage"  type="file" name="authorImage" />
+<div id="displayImg"></div>
+</div>
+<div>
+    <label for="about">about:</label>
+<textarea  name="about" ><%= author.about %></textarea>
+</div>
+

@@ -1,0 +1,187 @@
+[{
+  "title": "The Witching Hour",
+  "author": {
+    "$oid": "646e27deb12984d7bcbf6126"
+  },
+  "description": "the time at night when the powers of witches and other supernatural beings are believed to be strongest, usually occurring at midnight or 3:00 am.\r\n",
+  "publishDate": {
+    "$date": "1990-12-10T00:00:00.000Z"
+  },
+  "pageCount": 976,
+  "coverImageName": "2146fb2a3bb95af02ea3a53b9dfce35c",
+  "createdAt": {
+    "$date": "2023-05-12T23:29:37.555Z"
+  }
+},{
+  "title": "Romeo and Juliet",
+  "author": {
+    "$oid": "646e28e6feecc9e64e82b864"
+  },
+  "description": "Romeo and Juliet is about a young hero and heroine whose families, the Montagues and the Capulets, respectively, are ferocious enemies.",
+  "publishDate": {
+    "$date": {
+      "$numberLong": "-11770704000000"
+    }
+  },
+  "pageCount": 101,
+  "coverImageName": "39de4f88deac11b66c2cef856f375f87",
+  "createdAt": {
+    "$date": "2023-05-12T23:33:52.710Z"
+  }
+},{
+  "title": "One Piece",
+  "author": {
+    "$oid": "646e2958feecc9e64e82b86f"
+  },
+  "description": "The story follows the adventures of Monkey D. Luffy and his crew, the Straw Hat Pirates, where he explores the Grand Line in search of the mythical treasure known as the \"One Piece\" in order to become the next King of the Pirates.",
+  "publishDate": {
+    "$date": "1997-02-01T00:00:00.000Z"
+  },
+  "pageCount": 21000,
+  "coverImageName": "f23317e2ff6ad4c2401376685d8488da",
+  "createdAt": {
+    "$date": "2023-05-12T23:35:14.062Z"
+  }
+},{
+  "title": "Thus Spoke Zarathustra",
+  "author": {
+    "$oid": "646caeb82f343c1b4044090f"
+  },
+  "description": "about Thus Spoke Zarathustra\r\nIt describes how the ancient Persian prophet Zarathustra \r\ndescends from his solitude in the mountains to tell the world that God is dead and that Superman,\r\n the human embodiment of divinity is his.",
+  "publishDate": {
+    "$date": "1983-01-01T00:00:00.000Z"
+  },
+  "pageCount": 254,
+  "coverImageName": "b87356d490de7bbdec163b61b4eb0213",
+  "createdAt": {
+    "$date": "2023-05-12T23:36:22.299Z"
+  }
+},{
+  "title": "midnight sun",
+  "author": {
+    "$oid": "646e29f2feecc9e64e82b87d"
+  },
+  "description": "The work retells the events of Twilight from the perspective of Edward Cullen instead of that of the series' usual narrating character Bella Swan.",
+  "publishDate": {
+    "$date": "2020-08-04T00:00:00.000Z"
+  },
+  "pageCount": 768,
+  "coverImageName": "5526d253f362df144c8b08ec7b69ed5f",
+  "createdAt": {
+    "$date": "2023-05-12T23:38:12.423Z"
+  }
+},{
+  "title": "Harry Potter and the Philosopher's Stone",
+  "author": {
+    "$oid": "646e2b4766155ad34b930fc8"
+  },
+  "description": "Harry Potter and the Philosopher's Stone is a fantasy novel written by British author J. K. Rowling. The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry.",
+  "publishDate": {
+    "$date": "1997-06-26T00:00:00.000Z"
+  },
+  "pageCount": 223,
+  "coverImageName": "6339d785a006752d8ae3a04f177a2ea1",
+  "createdAt": {
+    "$date": "2023-05-24T15:34:52.108Z"
+  }
+},{
+  "title": "Harry Potter and the Chamber of Secrets",
+  "author": {
+    "$oid": "646e2b4766155ad34b930fc8"
+  },
+  "description": "Harry Potter and the Chamber of Secrets is a fantasy novel written by British author J. K. Rowling and the second novel in the Harry Potter series. The plot follows Harry's second year at Hogwarts School of Witchcraft and Wizardry, during which a series of messages on the walls of the school's corridors warn that the \"Chamber of Secrets\" has been opened and that the \"heir of Slytherin\" would kill all pupils who do not come from all-magical families.",
+  "publishDate": {
+    "$date": "1998-07-01T00:00:00.000Z"
+  },
+  "pageCount": 251,
+  "coverImageName": "c29660bee413418ded756280c9ccc888",
+  "createdAt": {
+    "$date": "2023-05-24T15:37:17.356Z"
+  }
+},{
+  "title": "Harry Potter and the Prisoner of Azkaban",
+  "author": {
+    "$oid": "646e2b4766155ad34b930fc8"
+  },
+  "description": "Harry Potter and the Prisoner of Azkaban is a fantasy novel written by British author J. K. Rowling and is the third in the Harry Potter series. The book follows Harry Potter, a young wizard, in his third year at Hogwarts School of Witchcraft and Wizardry. Along with friends Ronald Weasley and Hermione Granger, Harry investigates Sirius Black, an escaped prisoner from Azkaban, the wizard prison, believed to be one of Lord Voldemort's old allies.",
+  "publishDate": {
+    "$date": "1999-07-08T00:00:00.000Z"
+  },
+  "pageCount": 317,
+  "coverImageName": "e6d9689b23e351135327752e2087f515",
+  "createdAt": {
+    "$date": "2023-05-24T15:39:28.601Z"
+  }
+},{
+  "title": "Harry Potter and the Goblet of Fire",
+  "author": {
+    "$oid": "646e2b4766155ad34b930fc8"
+  },
+  "description": "Harry Potter and the Goblet of Fire is a fantasy novel written by British author J. K. Rowling and the fourth novel in the Harry Potter series. It follows Harry Potter, a wizard in his fourth year at Hogwarts School of Witchcraft and Wizardry, and the mystery surrounding the entry of Harry's name into the Triwizard Tournament, in which he is forced to compete.",
+  "publishDate": {
+    "$date": "2000-07-08T00:00:00.000Z"
+  },
+  "pageCount": 363,
+  "coverImageName": "c53d8340cfb88798888878362b284198",
+  "createdAt": {
+    "$date": "2023-05-24T15:43:41.435Z"
+  }
+},{
+  "title": "Harry Potter and the Order of the Phoenix",
+  "author": {
+    "$oid": "646e2b4766155ad34b930fc8"
+  },
+  "description": "Harry Potter and the Order of the Phoenix is a fantasy novel written by British author J. K. Rowling and the fifth novel in the Harry Potter series. It follows Harry Potter's struggles through his fifth year at Hogwarts School of Witchcraft and Wizardry, including the surreptitious return of the antagonist Lord Voldemort, O.W.L. exams, and an obstructive Ministry of Magic. The novel was published on 21 June 2003 by Bloomsbury in the United Kingdom, Scholastic in the United States, and Raincoast in Canada. It sold five million copies in the first 24 hours of publication.",
+  "publishDate": {
+    "$date": "2003-06-21T00:00:00.000Z"
+  },
+  "pageCount": 766,
+  "coverImageName": "155c5be1fbe91b489c7d63f063422641",
+  "createdAt": {
+    "$date": "2023-05-24T15:47:48.943Z"
+  }
+},{
+  "title": "Harry Potter and the Half-Blood Prince",
+  "author": {
+    "$oid": "646e2b4766155ad34b930fc8"
+  },
+  "description": "Harry Potter and the Half-Blood Prince is a fantasy novel written by British author J. K. Rowling and the sixth and penultimate novel in the Harry Potter series. Set during Harry Potter's sixth year at Hogwarts, the novel explores the past of the boy wizard's nemesis, Lord Voldemort, and Harry's preparations for the final battle against Voldemort alongside his headmaster and mentor Albus Dumbledore.",
+  "publishDate": {
+    "$date": "2005-07-16T00:00:00.000Z"
+  },
+  "pageCount": 607,
+  "coverImageName": "17a0aac39d75b35157fa6bc788d8c36b",
+  "createdAt": {
+    "$date": "2023-05-24T15:49:04.436Z"
+  }
+},{
+  "title": "Harry Potter and the Deathly Hallows",
+  "author": {
+    "$oid": "646e2b4766155ad34b930fc8"
+  },
+  "description": "Harry Potter and the Deathly Hallows is a fantasy novel written by British author J. K. Rowling and the seventh and final novel in the Harry Potter series. It was released on 21 July 2007 in the United Kingdom by Bloomsbury Publishing, in the United States by Scholastic, and in Canada by Raincoast Books. The novel chronicles the events directly following Harry Potter and the Half-Blood Prince (2005) and the final confrontation between the wizards Harry Potter and Lord Voldemort.",
+  "publishDate": {
+    "$date": "2007-07-21T00:00:00.000Z"
+  },
+  "pageCount": 607,
+  "coverImageName": "d7cab3773144f0fa64699dfa8ebd145d",
+  "createdAt": {
+    "$date": "2023-05-24T15:50:54.477Z"
+  }
+},{
+  "title": "Beyond Good and Evil",
+  "author": {
+    "$oid": "646caeb82f343c1b4044090f"
+  },
+  "description": "Beyond Good and Evil: Prelude to a Philosophy of the Future (German: Jenseits von Gut und Böse: Vorspiel einer Philosophie der Zukunft) is a book by philosopher Friedrich Nietzsche that covers ideas in his previous work Thus Spoke Zarathustra but with a more polemical approach.",
+  "publishDate": {
+    "$date": {
+      "$numberLong": "-2650752000000"
+    }
+  },
+  "pageCount": 116,
+  "coverImageName": "e3a1ecba7fda983d1d3732dcb3bf712d",
+  "createdAt": {
+    "$date": "2023-05-25T12:42:06.407Z"
+  }
+}]

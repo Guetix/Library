@@ -1,4 +1,4 @@
-const image = document.querySelector('#coverImage')
+const image = document.querySelector('#inputImage')
 let coverImage = ''
 
 image.addEventListener('change',()=>{

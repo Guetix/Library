@@ -1,12 +1,20 @@
 <div>
-    <h1><%= author.name %></h1>
-    <a href="/authors/<%=  author.id %>/edit">Edit</a>
-    <%- include('../partials/_delete_form' , {url: `/authors/${author.id}` }) %>
-    <% if(booksList.length > 0){ %> <% booksList.forEach(book => { %>
-      <a href="/books/<%= book.id  %>">
-           <img height="150" width="100" src="<%= book.coverImagePath %>" />
-      </a>
- 
-    <% }) %> <% } %>
-  </div>
-  
+  <h1><%= author.name %></h1>
+  <img
+    width="150"
+    height="200"
+    src="<%= author.imagePath  %>"
+    alt="author image"
+  />
+  <div><b>About:</b> <%= author.about %></div>
+  <a href="/authors/<%=  author.id %>/edit">Edit</a>
+  <%- include('../partials/_delete_form' , {url: `/authors/${author.id}` }) %>
+  <h3>Author Books:</h3>
+  <% if(booksList.length > 0){ %> <% booksList.forEach(book => { %>
+  <a href="/books/<%= book.id  %>">
+    <img height="150" width="100" src="<%= book.coverImagePath %>" />
+  </a>
+  <% }) %> <% } else { %>
+  <p>No books</p>
+  <% } %>
+</div>
